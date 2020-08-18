@@ -15,7 +15,7 @@ module.exports = {
         ],
     },
     output: {
-        library: 'TS',
+        library: 'ReduxStore',
         path: path.resolve(__dirname, './lib'),
         filename: 'index.umd.js',
         libraryTarget: 'umd',

@@ -1,6 +1,6 @@
 {
-  "name": "typescript-boilerplate",
-  "version": "1.0.0",
+  "name": "@lvyue/redux",
+  "version": "0.0.1",
   "description": "",
   "main": "lib/index.umd.js",
   "typings": "lib/esm/index.d.ts",
@@ -25,6 +25,10 @@
   },
   "homepage": "https://github.com/lvyue/typescript-boilerplate#readme",
   "devDependencies": {
+    "@types/ramda": "^0.27.14",
+    "@types/redux": "^3.6.0",
+    "@types/redux-logger": "^3.0.8",
+    "@types/redux-saga": "^0.10.5",
     "@types/source-map": "^0.5.7",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
     "@typescript-eslint/parser": "^3.7.1",
@@ -45,7 +49,12 @@
       "pre-commit": "npm run lint"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "ramda": "^0.27.1",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.1.3"
+  },
   "files": [
     "lib",
     "package.json",

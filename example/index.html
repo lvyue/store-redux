@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/index.umd.js"></script>
+</head>
+<body>
+    <script>
+        const log = console.log;
+        const app = new ReduxStore();
+        async function fetchUser(identity) {
+            return { identity };
+        }
+        app.model({
+            namespace:"user",
+            state: {
+                name:"lvyue"
+            },
+            reducer: {
+                setUsername(state,action) {
+                    log('fetch state ->',state, ",actions ->",action);
+                    return {...state,...action.payload|| {}};
+                }
+            },
+            effects: {
+                fetch: function* (action, { put, call }) {
+                    log('call effect action ->', action);
+                    const u = yield call(fetchUser, 'a');
+                    yield put({ type: 'user/addUser', payload: { user: u } });
+                },
+            }
+        });
+        app.model({
+            namespace:"team",
+            state: {
+                name:"lvyue"
+            },
+            reducer: {
+                setUsername(state,action) {
+                    log('fetch state ->',state, ",actions ->",action);
+                    return {...state,...action.payload|| {}};
+                }
+            },
+            effects: {
+                fetch: function* (action, { put, call }) {
+                    log('call effect action ->', action);
+                    const u = yield call(fetchUser, 'a');
+                    yield put({ type: 'user/addUser', payload: { user: u } });
+                },
+            }
+        })
+
+        const store = app.start({ user: { name: "吕悦1231" } });
+        log(store);
+        log(store.getState());
+        store.dispatch({type: "user/setUsername", payload:{ name:"吕悦"}});
+        store.dispatch({type: "team/fetch", payload:{ identity:"吕悦"}});
+    </script>
+</body>
+</html>
